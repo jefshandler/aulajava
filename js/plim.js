@@ -1,4 +1,20 @@
-function myFunction() {
+const pessoa = {
+  nome : "Jeferson",
+  sobrenome : "Shandler",
+  idade : 30,
+  vip : true,
+  saudacao : function () {
+    return this.nome + " " + this.sobrenome;
+  },
+  sauda : function () {
+    document.getElementById("demo").innerHTML = "Sr.. " + pessoa.nome + " " + pessoa.sobrenome;
+  }
+};
+
+
+function executa_plim() {
+  let plins = [];
+  let corpo = "";
   let i = 0;
 
   for (i = 1; i <= 20; i++) {
@@ -11,9 +27,126 @@ function myFunction() {
     }
     resto = i % 4;
     if (resto == 0) {
-      document.write("plim", "-", tipo, "<br>");
+      corpo += "plim-" + tipo + "<br>";
     } else {
-      document.write(i, "-", tipo, "<br>");
+      corpo += i + "-" + tipo + "<br>";
     }
   }
+
+  if (document.getElementById("demo").innerHTML == "Par ou Impar") {
+    document.getElementById("demo").innerHTML = corpo;
+  } else {
+    document.getElementById("demo").innerHTML = "Par ou Impar";
+  }
+}
+function contarItensDaLista() {
+  const cores = ['azul', 'verde', 'amarelo', 'branco', 'preto'];
+  //const cores = [];
+  let msg = "";
+
+  if (cores.length > 1) {
+    msg = "A lista tem " + cores.length + " itens";
+  } else if (cores.length == 1) {
+    msg = "A lista tem 1 item";
+  } else {
+    msg = "A lista está vazia";
+  }
+
+  console.log(cores);
+
+  if (document.getElementById("lista_cor").innerHTML == msg) {
+    document.getElementById("lista_cor").innerHTML = "";
+  } else {
+    document.getElementById("lista_cor").innerHTML = msg;
+  }
+}
+function contarItensDaListaMelhorado() {
+  let solicita_cores = prompt(
+      "Digite as cores separadas por vírgulas, por favor"
+  );
+
+  let cores = [];
+  if (solicita_cores != null) {
+    cores = solicita_cores.split(",");
+  }
+
+  let msg = "";
+
+  let tamanho = cores.length;
+
+  switch (tamanho) {
+    case 0:
+      msg = "<p>A lista está vazia</p>";
+      break;
+    case 1:
+      msg = "<p>A lista tem <span class='destaque'>1</span> item</p>";
+      break;
+    default:
+      msg =
+          "<p>A lista tem <span class='destaque'>" +
+          cores.length +
+          "</span> itens</p>";
+      break;
+  }
+  let listar_cores = "";
+  cores.forEach(function (cor, i) {
+    listar_cores += cor + "<br>";
+  });
+  if (cores.length > 0) {
+    if (cores[0].length > 0)
+      msg += "<p>Cores digitadas:</p><p>" + listar_cores + "</p>";
+    else {
+      msg = "<p>A lista está vazia</p>";
+    }
+  }
+
+  if (document.getElementById("lista_cor1").innerHTML == msg) {
+    document.getElementById("lista_cor1").innerHTML =
+        "<p>A lista está vazia</p>";
+  } else {
+    document.getElementById("lista_cor1").innerHTML = msg;
+  }
+}
+
+function ordenarLista() {
+  const alunos = ["Luciano", "José", "Abel", "Sara", "Jeferson"];
+  console.log(alunos);
+  let ordenados = alunos.sort();
+
+  if (
+      ordenados[0] ==
+      document.getElementById("lista_ordenada").innerHTML.split(",")[0]
+  ) {
+    document.getElementById("lista_ordenada").innerHTML = ordenados.reverse();
+  } else {
+    document.getElementById("lista_ordenada").innerHTML = ordenados;
+  }
+}
+function saudarPessoa() {
+  document.getElementById("demo").innerHTML = "Oi " + pessoa.nome + " " + pessoa.sobrenome;
+};
+function saudarPessoaFuncaoObjeto() {
+  document.getElementById("demo").innerHTML = "Sr. " +pessoa.saudacao();
+}
+function saudarPessoaFuncaoObjetoMetodo() {
+  pessoa.sauda();
+}
+
+class Pessoa{
+  constructor(nome, sobrenome, idade, vip) {
+    //atributos
+    this.nome = " Helia";
+    this.sobrenome = "Bezerra";
+    this.idade = "25";
+    this.vip = false;
+
+  }
+  //metodos e funcoes
+  saudacoes(){
+    document.getElementById("demo").innerHTML = "Olá " + this.nome + " " + this.sobrenome;
+  }
+}
+function SaudarPessoaClasse(){
+  let aluna = new Pessoa()
+  aluna.saudacoes();
 }
